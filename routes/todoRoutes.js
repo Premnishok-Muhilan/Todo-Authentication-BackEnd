@@ -13,9 +13,24 @@ For example,
 */
 const todoRouter = express.Router();
 
+//importing the Todo model from todo.js inside models
 const Todo = require("../models/todo");
 
+//importing todoController object from todoController.js
+
 const todoController = require("../controllers/todoController");
+
+/*Using the createTodo method of the todoController object for the post request
+.post("/", ...): This is a method provided by the Express router to define a route that
+ handles HTTP POST requests. The .post method takes two main arguments:
+    1.Path ("/"): The first argument is the path for the route. In this case, "/" represents
+     the root path for the router. This means that the route will match POST requests sent 
+     to the base URL of this router.
+    2.Handler Function (todoController.createTodo): The second argument is a callback function
+     that will be executed when a POST request is made to this route. This function is 
+     responsible for handling the request and generating a response.
+*/
+
 todoRouter.post("/", todoController.createTodo);
 
 // add routes to the router

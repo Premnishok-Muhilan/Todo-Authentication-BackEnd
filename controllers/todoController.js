@@ -1,5 +1,7 @@
+//importing the Todo model from todo.js inside models
 const Todo = require('../models/todo');
 
+//todoController object
 const todoController = {
     createTodo: async (req, res) => {
         try {
@@ -22,4 +24,5 @@ const todoController = {
     }
 }
 
+//export the todoController object
 module.exports = todoController;
