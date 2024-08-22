@@ -30,10 +30,15 @@ const todoController = require("../controllers/todoController");
      that will be executed when a POST request is made to this route. This function is 
      responsible for handling the request and generating a response.
 */
-
+//POST a todo
 todoRouter.post("/", todoController.createTodo);
 
-todoRouter.get("/:id", todoController.getTodos);
+//GET all todos
+//with params
+// todoRouter.get("/:id", todoController.getTodos);
+//without params
+todoRouter.get("/", todoController.getTodos);
+
 // add routes to the router
 // todoRouter.post("/", async (req, res) => {
 //   try {

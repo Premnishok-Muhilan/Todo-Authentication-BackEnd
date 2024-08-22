@@ -1,6 +1,18 @@
 //used to import the Express module
 const express = require("express");
 
+/*import todoRouter
+Router Module: The todoRoutes module is expected to export an Express router object.
+An Express router is a subset of the Express application that can handle routes and
+middleware.
+Purpose: By importing this router, you can modularize your route definitions,
+making your code more organized and maintainable.
+*/
+const todoRouter = require("./routes/todoRoutes");
+
+//import the requestLogger
+const requestLogger = require("./utils/logger");
+
 /*imports the Todo model
 The const keyword indicates that once the Todo variable is assigned a value,
 it cannot be reassigned to a different value. However, the properties of the
@@ -43,6 +55,8 @@ and handle incoming data in a structured way.
 
 app.use(express.json());
 
+app.use(requestLogger);
+
 //Define route handler
 //Avoiding this would result in "Cannot GET /" error
 /*
@@ -72,15 +86,6 @@ app.get("/", (request, response) => {
   */
   response.send("Hello using experss JS");
 });
-
-/*import todoRouter
-Router Module: The todoRoutes module is expected to export an Express router object.
-An Express router is a subset of the Express application that can handle routes and
-middleware.
-Purpose: By importing this router, you can modularize your route definitions,
-making your code more organized and maintainable.
-*/
-const todoRouter = require("./routes/todoRoutes");
 
 //To use router from todoRoutes.js
 /*
@@ -143,7 +148,6 @@ app.use("/api/v1/todos", todoRouter);
 //     res.status(500).send({ message: error.message });
 //   }
 // });
-
 
 /*
 When you use module.exports = app, you are telling Node.js to export the app instance
