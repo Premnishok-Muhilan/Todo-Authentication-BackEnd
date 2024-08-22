@@ -45,6 +45,9 @@ todoRouter.get("/:id", todoController.getTodo);
 //PUT a single todo by id
 todoRouter.put('/:id', todoController.updateTodo);
 
+//DELETE a single todo by id
+todoRouter.delete('/:id', todoController.deleteTodo);
+
 // add routes to the router
 // todoRouter.post("/", async (req, res) => {
 //   try {

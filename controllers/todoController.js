@@ -1,7 +1,6 @@
-//importing the Todo model from todo.js inside models
+const { default: mongoose } = require("mongoose");
 const Todo = require("../models/todo");
 
-//todoController object
 const todoController = {
   createTodo: async (req, res) => {
     try {
@@ -22,22 +21,11 @@ const todoController = {
       res.status(500).send({ message: error.message });
     }
   },
-
   getTodos: async (req, res) => {
     try {
-      //moved to logger.js inside the utils directory
-      // console.log(req.query);
-      // console.log(req.method);
-      // console.log(req.url);
-      // console.log(req.params);
-      // console.log(req.body);
-
-      //dummy send to req
-      //res.send({ message: "All Todos" });
-      //Todo: model name
       const todos = await Todo.find({}, { __v: 0 });
-      res.status(200).send({ message: "Todos fetched successfully!", todos });
-      //   res.send(todos);
+
+      res.status(200).send({ message: "Todos fetched successfully", todos });
     } catch (error) {
       res.status(500).send({ message: error.message });
     }
@@ -48,6 +36,10 @@ const todoController = {
 
       // const todo = await Todo.find({ _id: id}, { __v: 0 });
       const todo = await Todo.findById(id, { __v: 0 });
+
+      if (!todo) {
+        return res.status(404).send({ message: "Todo not found" });
+      }
 
       res.send({ message: "Todo fetched successfully", todo });
     } catch (error) {
@@ -79,7 +71,22 @@ const todoController = {
       res.status(500).send({ message: error.message });
     }
   },
+  deleteTodo: async (req, res) => {
+    try {
+      const { id } = req.params;
+
+      // find the todo by id and delete it
+      const deletedTodo = await Todo.findByIdAndDelete(id);
+
+      if (!deletedTodo) {
+        return res.status(404).send({ message: "Todo not found" });
+      }
+
+      res.send({ message: "Todo deleted successfully", todo: deletedTodo });
+    } catch (error) {
+      res.status(500).send({ message: error.message });
+    }
+  },
 };
 
-//export the todoController object
 module.exports = todoController;
