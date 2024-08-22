@@ -42,6 +42,18 @@ const todoController = {
       res.status(500).send({ message: error.message });
     }
   },
+  getTodo: async (req, res) => {
+    try {
+        const { id } = req.params;
+
+        // const todo = await Todo.find({ _id: id}, { __v: 0 });
+        const todo = await Todo.findById(id, { __v: 0 });
+
+        res.send({ message: 'Todo fetched successfully', todo });
+    } catch (error) {
+        res.status(500).send({ message: error.message });
+    }
+}
 };
 
 //export the todoController object

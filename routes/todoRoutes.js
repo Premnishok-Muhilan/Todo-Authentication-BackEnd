@@ -39,6 +39,9 @@ todoRouter.post("/", todoController.createTodo);
 //without params
 todoRouter.get("/", todoController.getTodos);
 
+//GET a single todo
+todoRouter.get("/:id", todoController.getTodo);
+
 // add routes to the router
 // todoRouter.post("/", async (req, res) => {
 //   try {
