@@ -21,6 +21,20 @@ const todoController = {
         } catch (error) {
             res.status(500).send({ message: error.message });
         }
+    },
+
+    getTodos: async(req,res) =>{
+        try{
+            console.log(req.query);
+            console.log(req.method);
+            console.log(req.url);
+            console.log(req.params);
+            console.log(req.body);
+
+        }
+        catch(error){
+            res.status(500).send({message:error.message});
+        }
     }
 }
 

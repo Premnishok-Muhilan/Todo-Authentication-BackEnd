@@ -33,6 +33,7 @@ const todoController = require("../controllers/todoController");
 
 todoRouter.post("/", todoController.createTodo);
 
+todoRouter.get("/:id", todoController.getTodos);
 // add routes to the router
 // todoRouter.post("/", async (req, res) => {
 //   try {
