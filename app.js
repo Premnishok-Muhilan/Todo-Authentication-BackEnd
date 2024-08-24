@@ -20,6 +20,11 @@ object assigned to Todo can still be modified.
 */
 const Todo = require("./models/todo");
 
+//Import the cors library
+const cors = require("cors");
+
+
+
 /*
 express() is a function provided by the Express library.
 When you call this function, it creates and returns an instance
@@ -29,6 +34,14 @@ provides various methods for handling HTTP requests and configuring
 the web server.
 */
 const app = express();
+
+app.use(
+  cors({
+    origin: "http://localhost:5173",
+    credentials: true,
+    optionsSuccessStatus: 200,
+  })
+);
 
 /*
 The line app.use(express.json()); is used in an Express.js application
