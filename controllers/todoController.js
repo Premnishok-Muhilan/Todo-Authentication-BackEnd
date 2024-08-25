@@ -5,11 +5,12 @@ const todoController = {
   createTodo: async (req, res) => {
     try {
       // get the description from the request body
-      const { description } = req.body;
+      const { description, status } = req.body;
 
       // create a new todo
       const newTodo = new Todo({
         description,
+        status,
       });
 
       // save the todo to the database
@@ -61,7 +62,7 @@ const todoController = {
 
       // update the todo with the new data
       if (description) todo.description = description;
-      if (status) todo.status = status;
+      if (status != undefined) todo.status = status;
 
       // save the updated todo
       const updatedTodo = await todo.save();
