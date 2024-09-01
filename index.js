@@ -7,7 +7,6 @@ const app = require("./app");
 //destructure the properties from the object returned by the require call
 const { MONGO_DB_URL, PORT } = require("./utils/config");
 
-
 /*import the Mongoose library
 The Mongoose library exports an object that includes methods and
 properties for connecting to a MongoDB database, defining schemas,
@@ -45,3 +44,5 @@ mongoose
     */
     console.log("Couldn't connect to MongoDB Atlas.Error: ", error);
   });
+
+// Todo back end from earlier development
