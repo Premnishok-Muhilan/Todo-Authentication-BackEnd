@@ -1,6 +1,7 @@
 const { default: mongoose } = require("mongoose");
 const Todo = require("../models/todo");
 
+//Object which holds CRUD operations
 const todoController = {
   createTodo: async (req, res) => {
     try {
