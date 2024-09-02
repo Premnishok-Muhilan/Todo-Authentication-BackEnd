@@ -5,7 +5,7 @@ const app = require("./app");
 
 //import the config module and
 //destructure the properties from the object returned by the require call
-const { MONGO_DB_URL, PORT } = require("./utils/config");
+const { MONGODB_URI, PORT } = require("./utils/config");
 
 /*import the Mongoose library
 The Mongoose library exports an object that includes methods and
@@ -23,7 +23,7 @@ require("dotenv").config();
 
 //open connection with mongoDB
 mongoose
-  .connect(MONGO_DB_URL)
+  .connect(MONGODB_URI)
   .then(() => {
     /*
     This .then() block is executed if the Promise

@@ -1,12 +1,11 @@
 require("dotenv").config();
 
-const MONGO_DB_URL = process.env.MONGO_DB_URL;
+const MONGODB_URI = process.env.MONGODB_URI;
 const PORT = process.env.PORT;
+const JWT_SECRET = process.env.JWT_SECRET;
 
-
-//This module exports an object with two properties:
-// MONGO_DB_URL and PORT
 module.exports = {
-  MONGO_DB_URL,
-  PORT
+  MONGODB_URI,
+  PORT,
+  JWT_SECRET,
 };
