@@ -1,17 +1,20 @@
 const { default: mongoose } = require("mongoose");
 const Todo = require("../models/todo");
 
-//Object which holds CRUD operations
 const todoController = {
   createTodo: async (req, res) => {
     try {
       // get the description from the request body
       const { description, status } = req.body;
 
+      // get the user id from the request object
+      const userId = req.userId;
+
       // create a new todo
       const newTodo = new Todo({
         description,
         status,
+        user: userId,
       });
 
       // save the todo to the database
@@ -25,7 +28,11 @@ const todoController = {
   },
   getTodos: async (req, res) => {
     try {
-      const todos = await Todo.find({}, { __v: 0 });
+      // get the user id from the request object
+      const userId = req.userId;
+
+      // get all the todos added by the user
+      const todos = await Todo.find({ user: userId }, { __v: 0 });
 
       res.status(200).send({ message: "Todos fetched successfully", todos });
     } catch (error) {
